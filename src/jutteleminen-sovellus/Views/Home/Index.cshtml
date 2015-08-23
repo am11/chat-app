@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>JUTTELEMINEN SOVELLUS</h1>
+</div>
+
+
+@using (Html.BeginForm("Chat", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <label for="firstName"></label>
+            <input type="text" placeholder="First Name" name="firstName" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <label for="lastName"></label>
+            <input type="text" placeholder="Last Name" name="lastName" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="submit" name="submit" value="Enter" />
+        </div>
+    </div>
+}

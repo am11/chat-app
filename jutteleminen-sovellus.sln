@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jutteleminen-sovellus", "src\jutteleminen-sovellus\jutteleminen-sovellus.csproj", "{206F522E-E67B-4791-BBC4-31CA49B37A97}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{0F770F91-E437-45F8-91CB-4EE376225843}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureVMPublishModule.psm1 = PublishScripts\AzureVMPublishModule.psm1
+		PublishScripts\Publish-WebApplicationVM.ps1 = PublishScripts\Publish-WebApplicationVM.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{98F1DC55-8841-4A84-8E1D-05D891DF8701}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\jutteleminen-sovellus-WAWS-dev.json = PublishScripts\Configurations\jutteleminen-sovellus-WAWS-dev.json
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureTableDataStore", "src\AzureTableDataStore\AzureTableDataStore.csproj", "{77C5CE62-E685-43C4-B1BA-51BEC1BED355}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{206F522E-E67B-4791-BBC4-31CA49B37A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{206F522E-E67B-4791-BBC4-31CA49B37A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{206F522E-E67B-4791-BBC4-31CA49B37A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{206F522E-E67B-4791-BBC4-31CA49B37A97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77C5CE62-E685-43C4-B1BA-51BEC1BED355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77C5CE62-E685-43C4-B1BA-51BEC1BED355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77C5CE62-E685-43C4-B1BA-51BEC1BED355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77C5CE62-E685-43C4-B1BA-51BEC1BED355}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{98F1DC55-8841-4A84-8E1D-05D891DF8701} = {0F770F91-E437-45F8-91CB-4EE376225843}
+	EndGlobalSection
+EndGlobal

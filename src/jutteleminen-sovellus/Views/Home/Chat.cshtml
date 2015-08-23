@@ -1,0 +1,80 @@
+﻿@model IEnumerable<IUserEntity>
+@{
+    ViewBag.Title = "Chat";
+}
+
+<h2>Chat</h2>
+
+<ul id="discussion" class="list-group" style="min-height:180px"></ul>
+
+<div class="row">
+    <div class="col-lg-8">
+        <input type="text" id="message" />
+        <input type="button" id="sendmessage" value="Send" />
+        <input type="hidden" id="firstName" value="@ViewBag.FirstName" />
+        <input type="hidden" id="lastName" value="@ViewBag.LastName" />
+    </div>
+    <div class="col-lg-4">
+        <ul class="media-list" id="usersList">
+            @foreach (var user in Model)
+            {
+                <li class="media" id="@user.ClientId">
+                    @($"{user.FirstName} {user.LastName}")
+                </li>
+            }
+        </ul>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+        $(function () {
+            var chat = $.connection.chatHub;
+
+            chat.client.addNewMessageToPage = function (name, message, datetime) {
+                $('#discussion').append(
+                    '<li><strong>' +
+                        htmlEncode(name) +
+                        '</strong><small>(at ' +
+                        new Date(Date.parse(datetime)).toLocaleString() +
+                        ')</small> said: ' +
+                        htmlEncode(message) +
+                    '</li>');
+            };
+
+            chat.client.addNewUserToPage = function (firstName, lastName, connectionId) {
+                if (!$('#' + connectionId)[0]) {
+                    $('#usersList').append(
+                        '<li class="media" id="' + connectionId + '">' +
+                            firstName + ' ' +
+                            lastName +
+                        '</li>');
+                }
+            };
+
+            chat.client.removeUserFromPage = function (connectionId) {
+                $('#' + connectionId).remove()
+            };
+
+            $('#message').focus();
+
+            $.connection.hub.start().done(function () {
+                chat.server.announceLogOn($('#firstName').val(), $('#lastName').val());
+
+                $('#sendmessage').on('click', function () {
+                    chat.server.sendMessage($('#firstName').val(), $('#lastName').val(), $('#message').val());
+
+                    $('#message').val('').focus();
+                });
+            });
+        });
+
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+    </script>
+}
